@@ -1,9 +1,3 @@
-/*
-  Student name: Dênio Barbosa Júnior
-  Student ID: 301165098
-  Class: COMP229 - Web Application Development
-  
-*/
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 var createError = require("http-errors");

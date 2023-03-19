@@ -1,9 +1,3 @@
-/*
-  Student name: Dênio Barbosa Júnior
-  Student ID: 301165098
-  Class: COMP229 - Web Application Development
-  
-*/
 var express = require("express");
 const Assignment1 = require("../model/assigment1.model");
 const User = require("../model/registered.model");
@@ -95,15 +89,5 @@ router.post("/update/info", async function (req, res, next) {
   res.redirect("/business");
 });
 
-/* POST for the Delete page*/
-router.post("/delete", async function (req, res, next) {
-  const userId = req.body.userId;
-  const userFound = await Assignment1.findByIdAndDelete(userId);
-
-  console.log(userFound);
-  console.log(userId);
-
-  res.redirect("/business");
-});
 
 module.exports = router;
