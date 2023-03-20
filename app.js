@@ -71,9 +71,15 @@ var cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
 // connection to MongoDB -- need to pu the link here
-mongoose.connect(
-  ""
-);
+let DB = require("./config/db");
+
+mongoose.connect(DB.URI, {useNewUrlParser: true, useUnifiedTopology: true});
+
+let mongodb = mongoose.connection;
+mongodb.on('error', console.error.bind(console, 'Connection Error: '));
+mongodb.once('open', ()=>{
+  console.log('Connected to MongoDB...');
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
