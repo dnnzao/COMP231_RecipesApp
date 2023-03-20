@@ -8,7 +8,32 @@
             <%- include('../partials/header'); %>
         </header>
         <div id="allPage">
-            
+            <h1>Recipe List</h1>
+            <div style="color:white">
+                <table>
+                    <% for( var i=0; i < recipeList.length-1; i++) { %>
+                            <tr>
+                                <td><%- recipeList[i].title %></td>
+                                <td><%- recipeList[i].author %></td>
+                                <td><%- recipeList[i].published %></td>
+                                <td><%- recipeList[i].description %></td>
+                                <td><%- recipeList[i].ingredients %></td>
+                                <td>
+                                    <form action="/update" method="GET">
+                                        <input style="display: none" value="<%- recipeList[i]._id %>" name="userId">
+                                        <button type="submit">Update</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="/delete" method="POST">
+                                        <input style="display: none" value="<%- recipeList[i]._id %>" name="userId">
+                                        <button type="submit">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                    <%  } %>
+                </table>
+            </div>
         </div>
         <footer>
             <%- include('../partials/footer'); %>

@@ -6,7 +6,7 @@ const user_schema = new mongoose.Schema({
   email: String,
 },
 {
-  collection: "COMP231-users"
+  collection: "users"
 });
 
 const User = mongoose.model("User", user_schema);

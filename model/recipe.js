@@ -3,12 +3,12 @@ let mongoose = require('mongoose');
 let recipeModel = mongoose.Schema({
     title: String,
     author: String,
-    published: String,
+    published: Date,
     description: String,
     ingredients: String
 },
 {
-    collection: "COMP231-recipes"
+    collection: "recipes"
 });
 
 module.exports = mongoose.model('Recipe', recipeModel);
