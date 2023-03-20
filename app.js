@@ -70,10 +70,10 @@ app.use("/register_user", registerUser);
 var cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
-// connection to MongoDB -- need to pu the link here
-mongoose.connect(
-  ""
-);
+// connection to MongoDB -- need to put the link here
+// mongoose.connect(
+//   ""
+// );
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
