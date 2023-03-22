@@ -45,7 +45,7 @@ router.get("/login", function (req, res, next) {
 });
 
 /* POST login page. */
-router.post("/logout", function (req, res, next) {
+router.post("/login", function (req, res, next) {
   req.logout(function (err) {
     if (err) {
       return next(err);
