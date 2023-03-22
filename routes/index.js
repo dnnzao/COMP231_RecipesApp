@@ -23,6 +23,21 @@ router.get("/list_recipes", function (req, res, next) {
 }));
 });
 
+/* GET top recipes */
+router.get("/top_recipes", async function (req, res, next) {
+    res.render("top_recipes", { title: "COMP 231 - Assignment 1 - Top Recipes" });
+});
+
+/* GET post */
+router.get("/post", async function (req, res, next) {
+    res.render("post", { title: "COMP 231 - Assignment 1 - Post" });
+});
+
+/* GET contact */
+router.get("/contact", async function (req, res, next) {
+    res.render("contact", { title: "COMP 231 - Assignment 1 - Contact" });
+});
+
 /* GET login page. */
 router.get("/login", function (req, res, next) {
   if (req.user) return res.redirect("/");

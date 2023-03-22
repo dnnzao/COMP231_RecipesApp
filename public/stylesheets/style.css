@@ -19,6 +19,12 @@ a {
   float: right;
 }
 
+.home_page_logo {
+    width: 40px;
+    height: 40px;
+    float: right;
+}
+
 fieldset {
   margin-bottom: 5px;
   border-radius: 5px;
