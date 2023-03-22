@@ -3,7 +3,9 @@
     margin-left: auto;
     margin-right: auto;
     width: auto;
-    border: 3px solid green;
+    border: 3px solid rgb(6, 153, 6);
     padding: 8px;
     text-align: center;
+    font-weight: 600;
+    font-size: 16pt;
   }

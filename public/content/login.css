@@ -11,6 +11,7 @@ body {
 	background-position: fixed;
 	overflow: scroll;
 	color: rgb(20, 209, 67);
+	width: 980px;
   }
  /* h1 {
 	background-repeat: no-repeat;
@@ -34,7 +35,7 @@ body {
   }*/
 
 #loginPage {
-    width: 900px;
+    width: 980px;
     height: 500px;
 
     margin-right: auto;
