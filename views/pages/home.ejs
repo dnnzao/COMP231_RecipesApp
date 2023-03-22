@@ -7,16 +7,31 @@
         <header>
             <%- include('../partials/header'); %>
         </header>
-        <div class="text-center text-muted">
-            <p>
-                <blockquote>"Be smart, be kind, be curious"</blockquote> - Dênio Barbosa Júnior
-            </p>
-        </div>
+
+          <div class="hero-image">
+              <div class="hero-text">
+                 <img class="home_hero_image" src="/images/heroimage.png" height="400px" width="700px" alt="hero image">
+              </div>
+         </div>
+
+         <form>
+             <div style="text-align:center; className="search-wrapper">
+                <div className="form-group">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Searching..."
+                    />
+                    <button className="search-btn">Search</button>
+                </div>
+             </div>
+         </form>
+
         <h3 class="text-center text-muted">
             <a class="nav-link" href="/">Home</a>
-            <a class="nav-link" href="/list_recipes">List of recipes</a>
-            <a class="nav-link" href="/projects">Projects</a>
-            <a class="nav-link" href="/services">Services</a>
+            <a class="nav-link" href="/about">List of recipes</a>
+            <a class="nav-link" href="/projects">Top Recipes</a>
+            <a class="nav-link" href="/services">Post</a>
             <a class="nav-link" href="/contact">Contact</a>
             <a class="nav-link" href="/login">Login</a>
         </h3>

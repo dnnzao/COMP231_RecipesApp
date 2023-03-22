@@ -1,11 +1,12 @@
 body {
-  width: 980px;
-  min-height: 100vh;
-  margin-left: auto; 
-  margin-right: auto;
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #222222;
+    width: 980px;
+    min-height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-image: url("/images/i-like-food.svg");
+    background-color: rgb(243,243,243);
 }
 
 a {
