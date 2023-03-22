@@ -10,7 +10,7 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #ff008c;
 }
 
 .home_page_picture {
@@ -76,4 +76,8 @@ li.list-group-item-dark {
   justify-content: center;
   text-align: left;
   color: white;
+}
+
+#test{
+  color: greenyellow;
 }
