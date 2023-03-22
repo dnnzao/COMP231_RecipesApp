@@ -2,14 +2,48 @@
 <html>
     <head>
         <%- include('../partials/head'); %>
+        
     </head>
     <body>
         <header>
             <%- include('../partials/header'); %>
+            <link rel='stylesheet' href='/content/postpage.css'/>
+
         </header>
-        <div id="allPage">
-            
-        </div>
+        </header>
+        <div  class="text-center text-muted" >
+            <!-- <h1 class="text-center text-muted" >Contact</h1>-->
+                <main class="text-center text-muted" >
+                    <form class="form" action="/register_user/info" method="POST">
+                        <fieldset>
+                            <legend><b>Post Your Recipe</b></legend>
+                            <div>
+                                <label for="username"><b>Name of Recipe </b></label>
+                                <input class="contact_input" id="recipename" name="recipename" size="35" type="text" required="required" tabindex="1">
+                            </div>
+                            <div>
+                                <label for="recipetype"><b>Type of Recipe </b></label>
+                                <input class="contact_input" id="recipetype" name="recipetype" size="35" type="text" required="required" tabindex="1">
+                            </div>                            
+                            <div>
+                                <label for="ingredients"><b>Ingredients </b></label>
+                                <!--<input class="contact_input" id="ingredients" name="ingredients" size="35" type="email" required="required" tabindex="7">-->
+                                <textarea id="Other" name="Other" cols="66" rows="10" tabindex="90" 
+                                    placeholder="--- Please type the ingredients here ---"></textarea>
+                            </div>
+                            <div>
+                                <label for="image"><b>Image </b></label>
+                                <input class="contact_input" id="email" name="email" size="35" type="email" required="required" tabindex="7">
+                            </div>
+
+                            <div>
+                                <button type="submit" name="btnSubmit" value="Complete Registration" tabindex="36">Confirm</button>
+                                <button type="reset" name="btnReset" value="Clear Form" onclick="return confirm('Do you really want to reset?')" tabindex="39">Reset</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </main>
+            </div>
         <footer>
             <%- include('../partials/footer'); %>
         </footer>

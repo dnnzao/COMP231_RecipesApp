@@ -7,20 +7,22 @@
     <body>
         <header>
             <%- include('../partials/header'); %>
-            <link rel='stylesheet' href='/content/home.css'/>
+            <link rel='stylesheet' href='/content/register.css'/>
 
         </header>
         <div id="loginPage">
-            <h1>Login</h1>
+            <!--<h1>Login</h1>-->
+            <fieldset><br>
+            <legend><b>Please Login</b></legend>
             <script>
                 console.log(document.location)
                 var urlSearch = document.location.pathname + document.location.search;
                 if(urlSearch === "/login?erro=true") alert("User not found!");
             </script>
             <form action="/login" method="POST">
-                <input type="text" name="username" placeholder="username">
-                <input type="password" name="password" placeholder="password">
-                <button>Login</button>
+                <input type="text" name="username" placeholder="username" size="30" ><br><br>
+                <input type="password" name="password" placeholder="password" size="30"><br><br><br>
+                <button>Login</button><br><br><br>
             </form>
         </div><br><br>
         <footer>
