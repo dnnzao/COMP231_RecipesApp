@@ -30,34 +30,34 @@ fieldset {
   border-radius: 5px;
   border: 1px solid;
   border-color: green;
-  padding-left: 20px;
+  padding-left: 1px;
   text-align: center;
   width: auto;
   color: black;
   font-size: 12pt;
   box-shadow: 5px 5px 5px green;
   
-  
-  
 }
 
+legend {
+  color: green;
+  text-align: center;
+  }
+
 label {
-    margin-left: auto;
+    margin-left: 1px;
     margin-right: auto;
     width: 680px;
-    float:left;
+
     text-align: center;
-	padding-left: 149px;
+
 }
-#recipetype{
-text-align: center;
-float:left;
-position: absolute;
-top:330px;
-left: 580px;
-padding-left: 1px;
-width: 450px;
+
+#pageArea {
+  margin-left: 180px;
+  text-align: center;
 }
+
 
 
 .form {
@@ -70,6 +70,27 @@ width: 450px;
 div{
   margin: 1px;
   padding: 1px;
+}
+
+
+
+.box {
+	text-align: center;
+	color: #141313;
+	background-color: rgb(57, 245, 11);
+	border-radius: 15px;
+	box-shadow: 5px 5px 5px #161616;
+	text-align: center;
+	float:left;
+	position: absolute;
+	z-index: 90;
+  top: 880px;
+	left: 658px;	 
+	padding: 20px 20px 20px ;
+  width: 450px;
+  height: 55px;
+  
+
 }
 
 input {

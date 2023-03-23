@@ -1,4 +1,4 @@
-body {
+/*body {
 	top: 0px;
 	right: 0px;
 	bottom: 0px;
@@ -13,7 +13,7 @@ body {
 	color: rgb(20, 209, 67);
 	width: 980px;
   }
- /* h1 {
+  h1 {
 	background-repeat: no-repeat;
 	/*background-image: url("/Assets/images/graybg.jpg");
 	background-image: linear-gradient(to right, #fdfdff, #ebeff7);
@@ -32,7 +32,7 @@ body {
 	box-shadow: 5px 5px 5px #808080;
 	text-align: left;
 
-  }*/
+  }
 
 #loginPage {
     width: 980px;
@@ -49,7 +49,7 @@ body {
 	font-weight: 800;
 	font-size: 14pt;	
     text-align: left;
-	 /*background-color: rgb(233, 240, 243, 96); */
+	 /*background-color: rgb(233, 240, 243, 96); 
 	 margin: auto;
 	 padding-left: 120px;
 	 padding-right: 120px;
@@ -74,3 +74,147 @@ footer {
     color: rgb(255, 255, 255);
     font-size: large;
 }
+*/
+
+body {
+    width: 980px;
+    min-height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-image: url("/images/i-like-food.svg");
+    background-color: rgb(243,243,243);
+    color: green;
+}
+
+a {
+  color: #ff008c;
+}
+
+.home_page_picture {
+  width: 200px;
+  height: 300px;
+  float: right;
+}
+
+.home_page_logo {
+    width: 40px;
+    height: 40px;
+    float: right;
+}
+
+fieldset {
+
+border-radius: 5px;
+border: 1px solid;
+border-color: green;
+
+
+width: auto;
+color: black;
+font-size: 12pt;
+box-shadow: 5px 5px 5px green;
+  
+}
+
+label {
+  width: 280px;
+  float:left;
+  text-align: center;
+	padding-left: 1px;
+  
+
+}
+
+legend {
+color: green;
+text-align: center;
+}
+
+form {
+	text-align: center;
+	float:left;
+	position: absolute;
+	top:250px;
+	left: 480px;	
+}
+
+
+#button1 {
+	text-align: center;
+	color: #141313;
+	background-color: rgb(57, 245, 11);
+	border-radius: 15px;
+	box-shadow: 5px 5px 5px #161616;
+	text-align: center;
+	float:left;
+	position: absolute;
+	top: 375px;
+	left: 478px;	 
+
+
+	padding: 20px 20px 20px ;
+
+  width: 273px;
+  height: 30px;
+
+}
+
+#img {
+float:right;
+position: absolute;
+top: 215px;
+left: 820px;
+}
+
+.form {
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 14pt;
+}
+
+div{
+  margin: 1px;
+  padding: 1px;
+}
+
+input {
+  margin-right: 10px;
+  border: 1px solid;
+}
+
+.contact_input {
+  border: 1px solid;
+}
+li.list-group-item-dark {
+  background-color: #222222;
+}
+
+.logos {
+  background-color: #222222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+}
+
+.projects_images {
+  width: 840px;
+
+}
+
+
+.services-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  color: white;
+}
+
+#test{
+  color: greenyellow;
+}
+

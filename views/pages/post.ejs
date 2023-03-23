@@ -17,12 +17,22 @@
                     <form class="form" action="/register_user/info" method="POST">
                     <br>
                         <fieldset>
+
                             <legend><b>Post Your Recipe</b></legend>
+                            <div id="pageArea">
                             <div><br>
-                                <label for="username"><b>Name of Recipe </b></label>
-                                <input class="contact_input" id="recipename" name="recipename" size="50" type="text" required="required" tabindex="1">
+                                <label for="title"><b>Name of Recipe / Title </b></label>
+                                <input class="contact_input" id="title" name="title" size="51" type="text" required="required" tabindex="1">
                             </div><br>
-                            <div>
+                            <div><br>
+                                <label for="author"><b> Author </b></label>
+                                <input class="contact_input" id="author" name="author" size="51" type="text" required="required" tabindex="2">
+                            </div><br>
+                             <div><br>
+                                <label for="published"><b> Date  </b></label><br>
+                                <input class="contact_input" id="published" name="published" size="50" type="date" required="required" tabindex="3">
+                            </div><br><br>
+                            <!--<div>
                                 <label for="recipetype"><b>Type of Recipe </b></label><br><br>
                                 <select  class="contact_input" id="recipetype" name="recipetype"   type="text" required="required" tabindex="2">
                                 <option value="Appetizer"> Appetizer </option>
@@ -32,12 +42,17 @@
                                 <option value="Sandwich"> Sandwich </option>
                                 <option value="Soup"> Soup </option>
                                 <option value="Other"> Other </option></select>
-                            </div><br><br><br>
-                                                   
+                            </div><br><br><br>-->
+
+                            <div>
+                                <label for="description"><b> Description </b></label>
+                                <textarea id="description" name="description" cols="50" rows="8" tabindex="89" 
+                                    placeholder="--- Please type the description here ---"></textarea>
+                            </div>                       
                             <div>
                                 <label for="ingredients"><b>Ingredients </b></label>
                                 <!--<input class="contact_input" id="ingredients" name="ingredients" size="35" type="text" required="required" tabindex="7">-->
-                                <textarea id="Other" name="Other" cols="66" rows="10" tabindex="90" 
+                                <textarea id="ingredients" name="ingredients" cols="50" rows="8" tabindex="90" 
                                     placeholder="--- Please type the ingredients here ---"></textarea>
                             </div>
                            <!-- <div>
@@ -45,14 +60,19 @@
                                 <input class="contact_input" id="image" name="image" size="35" type="text" required="required" tabindex="7">
                             </div>-->
 
-                            <div>
+                            <div class="box">
                                 <button type="submit" name="btnSubmit" value="Complete Registration" tabindex="36">Confirm</button>
                                 <button type="reset" name="btnReset" value="Clear Form" onclick="return confirm('Do you really want to reset?')" tabindex="39">Reset</button>
-                            </div>
+                            </div><br><br>
+                             <br><br><br>
                         </fieldset>
+                        </div>
+
                     </form>
+
                 </main>
-            </div>
+            </div><br><br>
+
         <footer>
             <%- include('../partials/footer'); %>
         </footer>
