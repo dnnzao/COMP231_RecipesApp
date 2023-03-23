@@ -1,13 +1,13 @@
 body {
-    width: 980px;
-    min-height: 100vh;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 50px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    background-image: url("/images/i-like-food.svg");
-    background-color: rgb(243,243,243);
-    color: green;
+  width: 980px;
+  min-height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("/images/i-like-food.svg");
+  background-color: rgb(243,243,243);
+  color: green;
 }
 
 a {
@@ -27,17 +27,17 @@ a {
 }
 
 fieldset {
-  margin-left: auto;
-  margin-right: auto;
   border-radius: 5px;
   border: 1px solid;
   border-color: green;
-  padding: 6px;
+  padding-left: 20px;
   text-align: center;
   width: auto;
   color: black;
   font-size: 12pt;
   box-shadow: 5px 5px 5px green;
+  
+  
   
 }
 
@@ -47,7 +47,16 @@ label {
     width: 680px;
     float:left;
     text-align: center;
-	padding-left: 95px;
+	padding-left: 149px;
+}
+#recipetype{
+text-align: center;
+float:left;
+position: absolute;
+top:330px;
+left: 580px;
+padding-left: 1px;
+width: 450px;
 }
 
 
@@ -59,8 +68,8 @@ label {
 }
 
 div{
-  margin: 10px;
-  padding: 10px;
+  margin: 1px;
+  padding: 1px;
 }
 
 input {
