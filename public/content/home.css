@@ -24,7 +24,9 @@ a {
     height: 40px;
     float: right;
 }
-
+.home_hero_image {
+  float: right;
+}
 fieldset {
   margin-bottom: 5px;
   border-radius: 5px;
@@ -37,14 +39,36 @@ fieldset {
   text-align: center;
   margin-right: auto;
   margin-left: auto;
+
 }
 
+#search {
+  float: right;
+}
 div{
-  margin: 10px;
-  padding: 10px;
+  margin: 1px;
+  padding: 1px;
+}
+#img1 {
+  float:right;
+  position: absolute;
+  top: 235px;
+  left: 358px;
+  }
+
+  #img {
+    float:right;
+    position: absolute;
+    top: 1px;
+    left: 300px;
+    }
+ 
+footer {
+  text-align: right;
+  float: right;
 }
 
-input {
+  input {
   margin-right: 10px;
   border: 1px solid;
 }
