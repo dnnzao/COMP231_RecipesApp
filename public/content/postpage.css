@@ -93,6 +93,13 @@ div{
 
 }
 
+#img {
+  float:right;
+  position: absolute;
+  top: 155px;
+  left: 358px;
+  }
+
 input {
   margin-right: 10px;
   border: 1px solid;
