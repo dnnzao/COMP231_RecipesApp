@@ -11,16 +11,22 @@ router.get("/", async function (req, res, next) {
 });
 
 /* GET list of recipes page. */
-router.get("/list_recipes", function (req, res, next) {
-  res.render("list_recipes", { title: "List of Recipes" }, Recipe.find((err, contactList) => {
-    if(err){
-        return console.error(err);
-    }
-    else{
-        // console.log(contactList);
-        res.render('list_recipes', {title: 'List of Recipes', RecipeList: recipeList});
-    }
-}));
+router.get("/list_recipes", async function (req, res, next) {
+  let recipeList = await Recipe.find();
+  const search = req.query.search;
+
+  if (search) {
+    recipeList = recipeList.filter((recipe) => {
+      return recipe.ingredients.includes(search);
+    }) 
+  }
+  res.render("list_recipes", { title: "List of Recipes" , recipeList })
+});
+
+router.get("/recipe/:id", async function (req, res, next) {
+  const id = req.params.id;
+  const recipe = await Recipe.findById(id);
+  res.render("recipe_detail", { title: "Recipe Detail", recipe });
 });
 
 /* GET top recipes */
@@ -58,22 +64,21 @@ router.post("/login", function (req, res, next) {
 router.post(
   "/login",
   passport.authenticate('local',
-        (err, user, info) => {
-            if (err) {
-                return next(err);
-            }
-            if (!user) {
-                req.flash('loginMessage', 'Authentication Error');
-                return res.redirect('/login');
-            }
-            req.login(user, (err) => {
-                if (err) {
-                    return next(err);
-                }
-                return res.redirect('/contact-list');
-            });
-
-        })
+  (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      req.flash('loginMessage', 'Authentication Error');
+      return res.redirect('/login');
+    }
+    req.login(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      return res.redirect('/contact-list');
+    });
+  })
 );
 
 module.exports = router;
