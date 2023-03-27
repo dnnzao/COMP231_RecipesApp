@@ -97,9 +97,9 @@ left: 430px;
 
 #img {
 float:right;
-position: absolute;
-top: 205px;
-left: 800px;
+position: relative;
+top: -375px;
+left: -70px;
 }
 
 .form {
