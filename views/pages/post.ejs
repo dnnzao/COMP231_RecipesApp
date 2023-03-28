@@ -14,7 +14,7 @@
         <div  class="text-center text-muted" >
             <!-- <h1 class="text-center text-muted" >Contact</h1>-->
                 <main class="text-center text-muted" >
-                    <form class="form" action="/register_user/info" method="POST">
+                    <form class="form" action="/post/recipedetail" method="POST">
                     <br>
                         <fieldset>
 
@@ -31,14 +31,18 @@
                                 <label for="author"><b> Author </b></label>
                                 <input class="contact_input" id="author" name="author" size="51" type="text" required="required" tabindex="2">
                             </div><br>
+                            <div><br>
+                                <label for="published"><b> Published </b></label>
+                                <input class="published" id="published" name="published" size="51" type="text" required="required" placeholder="YYYY-MM-DD" tabindex="3">
+                            </div><br>
                             <div>
                                 <label for="description"><b> Description </b></label>
-                                <textarea id="description" name="description" cols="50" rows="8" tabindex="89" 
+                                <textarea id="description" name="description" cols="50" rows="8" tabindex="4" 
                                     placeholder="--- Please type the description here ---"></textarea>
                             </div>                       
                             <div>
                                 <label for="ingredients"><b>Ingredients </b></label>
-                                <textarea id="ingredients" name="ingredients" cols="50" rows="8" tabindex="90" 
+                                <textarea id="ingredients" name="ingredients" cols="50" rows="8" tabindex="5" 
                                     placeholder="--- Please type the ingredients here ---"></textarea>
                             </div>
                             <div class="box">

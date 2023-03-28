@@ -66,6 +66,10 @@ app.use("/", indexRouter);
 var registerUser = require("./routes/register_user");
 app.use("/register_user", registerUser);
 
+var postRouter = require("./routes/post");
+app.use("/post", postRouter);
+
+
 // cookie parser middleware
 var cookieParser = require("cookie-parser");
 app.use(cookieParser());

@@ -31,15 +31,17 @@ router.get("/recipe/:id", async function (req, res, next) {
   res.render("recipe_detail", { title: "Recipe Detail", recipe });
 });
 
+/* GET top recipes*/ 
+router.get("/recipe_detail", async function (req, res, next) {
+  res.render("recipe_detail", { title: "COMP 231 - Assignment 1 - Top Recipes" });
+});
+
 /* GET top recipes */
 router.get("/top_recipes", async function (req, res, next) {
     res.render("top_recipes", { title: "COMP 231 - Assignment 1 - Top Recipes" });
 });
 
-/* GET post */
-router.get("/post", async function (req, res, next) {
-    res.render("post", { title: "COMP 231 - Assignment 1 - Post" });
-});
+
 
 /* GET contact */
 router.get("/contact", async function (req, res, next) {
