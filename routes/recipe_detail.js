@@ -1,5 +1,7 @@
 var express = require("express");
+
 var router = express.Router();
+let mongoose = require('mongoose');
 
 // create a reference to the model
 let Recipe = require('../model/recipe');
@@ -15,18 +17,18 @@ module.exports.displayRecipeDetail = (req, res, next) => {
         {
             //console.log(RecipeDetail);
 
-            res.render('pages/recipe_detail', {title: 'Recipes', RecipeDetail: recipeDetail});      
+            res.render('/recipe_detail', {title: 'Recipes', RecipeDetail: recipeDetail});      
         }
     });
 }
 
 module.exports.displayPostPage = (req, res, next) => {
-    res.render('pages/post', {title: 'Post Recipe'})          
+    res.render('/post', {title: 'Post Recipe'})          
 }
 
 module.exports.processPostPage = (req, res, next) => {
     let newRecipe = Recipe({
-        "title": req.body.name,
+        "title": req.body.title,
         "author": req.body.author,
         "published": req.body.published,
         "description": req.body.description,
@@ -60,7 +62,7 @@ module.exports.displayEditPage = (req, res, next) => {
         else
         {
             //show the edit view
-            res.render('recipe/edit_recipeform.ejs', {title: 'Edit Recipe', recipe: recipeToEdit})
+            res.render('/edit_recipeform.ejs', {title: 'Edit Recipe', recipe: recipeToEdit})
         }
     });
 }
@@ -70,7 +72,7 @@ module.exports.processEditPage = (req, res, next) => {
 
     let updatedRecipe = Recipe({
         "_id": id,
-        "title": req.body.name,
+        "title": req.body.title,
         "author": req.body.author,
         "published": req.body.published,
         "description": req.body.description,
