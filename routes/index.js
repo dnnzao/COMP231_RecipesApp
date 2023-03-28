@@ -10,6 +10,8 @@ router.get("/", async function (req, res, next) {
   res.render("home", { title: "COMP 231 - Assignment 1 - Home Page" });
 });
 
+
+
 /* GET list of recipes page. */
 router.get("/list_recipes", async function (req, res, next) {
   let recipeList = await Recipe.find();
