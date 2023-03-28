@@ -31,6 +31,14 @@ router.get("/recipe/:id", async function (req, res, next) {
   res.render("recipe_detail", { title: "Recipe Detail", recipe });
 });
 
+
+router.get('/update', async (req, res, next) => {
+  const id = req.query.userId;
+  const recipe = await Recipe.findById(id);
+  res.render('updaterecipes', { title: "Recipe Update", recipe });
+});
+
+
 /* GET top recipes*/ 
 router.get("/recipe_detail", async function (req, res, next) {
   res.render("recipe_detail", { title: "COMP 231 - Assignment 1 - Top Recipes" });

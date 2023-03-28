@@ -10,40 +10,44 @@
             <link rel='stylesheet' href='/content/postpage.css'/>
 
         </header>
-        </header>
         <div  class="text-center text-muted" >
             <!-- <h1 class="text-center text-muted" >Contact</h1>-->
                 <main class="text-center text-muted" >
-                    <form class="form" action="/recipe_detail" method="POST">
+                    <form class="form" action="/update" method="POST">
                     <br>
                         <fieldset>
 
                             <legend><b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            Edit Your Recipe</b></legend>
+                            Update Recipe Details</b></legend>
                             <div id="pageArea">
                             <div><br>
                                 <label for="title"><b>Name of Recipe / Title </b></label>
-                                <input class="contact_input" id="title" name="title" size="51" type="text" required="required" tabindex="1">
+                                <input class="contact_input" id="title" name="title"  size="51" type="text" required="required" tabindex="1" value="<%= recipe.title %>">
                             </div><br>
                             <div><br>
                                 <label for="author"><b> Author </b></label>
-                                <input class="contact_input" id="author" name="author" size="51" type="text" required="required" tabindex="2">
+                                <input class="contact_input" id="author" name="author" size="51" type="text" required="required" tabindex="2" value="<%= recipe.author %>">
+                            </div><br>
+                            <div><br>
+                                <label for="published"><b> Published </b></label>
+                                <input class="published" id="published" name="published" size="51" type="text" required="required" placeholder="YYYY-MM-DD" tabindex="3" value="<%= recipe.published %>">
                             </div><br>
                             <div>
                                 <label for="description"><b> Description </b></label>
-                                <textarea id="description" name="description" cols="50" rows="8" tabindex="89" 
-                                    placeholder="--- Please type the description here ---"></textarea>
+                                <textarea id="description" name="description" cols="50" rows="8" tabindex="4" 
+                                    placeholder="--- Please type the description here ---" ><%= recipe.description %></textarea>
                             </div>                       
                             <div>
                                 <label for="ingredients"><b>Ingredients </b></label>
-                                <textarea id="ingredients" name="ingredients" cols="50" rows="8" tabindex="90" 
-                                    placeholder="--- Please type the ingredients here ---"></textarea>
+                                <textarea id="ingredients" name="ingredients" cols="50" rows="8" tabindex="5" 
+                                    placeholder="--- Please type the ingredients here ---"><%= recipe.ingredients %></textarea>
                             </div>
+    
                             <div class="box">
-                                <button type="submit" name="btnSubmit" value="Complete Registration" tabindex="36">Confirm</button>
-                                <button type="reset" name="btnReset" value="Clear Form" onclick="return confirm('Do you really want to reset?')" tabindex="39">Reset</button>
+                                <button  type="submit" name="btnSubmit" value="Update Recipe" tabindex="36">Update Recipe</button>
+                                <button type="reset" name="btnReset" value="Clear Form" onclick="return confirm('Do you really want to reset?')" tabindex="39">Reset
                             </div><br><br>
                              <br><br><br>
                         </fieldset>
