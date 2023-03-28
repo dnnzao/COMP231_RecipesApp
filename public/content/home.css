@@ -51,16 +51,16 @@ div{
 }
 #img1 {
   float:right;
-  position: absolute;
-  top: 255px;
-  left: 358px;
+  position: relative;
+  top: -595px;
+  left: -645px;
   }
 
   #img {
     float:right;
-    position: absolute;
-    top: 1px;
-    left: 360px;
+    position: relative;
+    top: -705px;
+    left: 1px;
     }
  
 footer {
