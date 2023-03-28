@@ -74,6 +74,15 @@ div{
 
 
 
+#img {
+  float:left;
+  position: relative;
+  top: -319px;
+  left: 147px;
+  transform: translate(-50%, -50%);
+  }
+
+
 .box {
 	text-align: center;
 	color: #141313;
@@ -82,10 +91,10 @@ div{
 	box-shadow: 5px 5px 5px #161616;
 	text-align: center;
 	float:left;
-	position: absolute;
+	position: relative;
 	z-index: 90;
-  top: 880px;
-	left: 658px;	 
+  top: 15px;
+	left: 118px;	 
 	padding: 20px 20px 20px ;
   width: 450px;
   height: 55px;
@@ -93,14 +102,7 @@ div{
 
 }
 
-#img {
-  float:right;
-  position: absolute;
-  top: 155px;
-  left: 358px;
-  }
-
-input {
+.input {
   margin-right: 10px;
   border: 1px solid;
 }

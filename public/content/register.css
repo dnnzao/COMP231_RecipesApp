@@ -49,6 +49,10 @@ label {
 
 }
 
+footer {
+  text-align: left;
+}
+
 legend {
 color: green;
 }

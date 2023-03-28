@@ -52,15 +52,16 @@ div{
 #img1 {
   float:right;
   position: relative;
-  top: -595px;
+  top: -635px;
   left: -645px;
   }
 
   #img {
     float:right;
     position: relative;
-    top: -705px;
-    left: 1px;
+    top: -677px;
+    left: 444px;
+    transform: translate(-50%, -50%);
     }
  
 footer {
@@ -105,3 +106,6 @@ li.list-group-item-dark {
 #test{
   color: greenyellow;
 }
+
+
+
