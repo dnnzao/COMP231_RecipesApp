@@ -16,16 +16,18 @@
             <div style="color: dark green">
                 <table>
                     <th>
-                
+                    
                     <td>Author</td>
                     <td>Date</td>
+                    <td> Update</td>
+                    <td>Delete</td>
                     </th>
                     <% for( var i=0; i < recipeList.length; i++) { %>
 
                             <tr>
                                 <td><a href="<%- '/recipe/' + recipeList[i]._id %>" target="_blank" ><%= recipeList[i].title %></a></td>
                                 <td><%= recipeList[i].author %></td>
-                                <td><%= recipeList[i].published %></td>
+                                <td><%= recipeList[i].published.toJSON().slice(0, 10) %></td>
                                 <!-- <td><%= recipeList[i].description %></td>
                                 <td><%= recipeList[i].ingredients %></td> -->
                                 <td>

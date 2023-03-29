@@ -16,7 +16,7 @@ router.post("/recipedetail", [
     .isLength({ min: 4, max: 100 })
     .withMessage("Title up to 100 characters only")
     .escape(),
-  body("author")
+  /*body("author")
     .trim()
     .isLength({ min: 3, max: 100 })
     .withMessage("Author up to 100 characters only")
@@ -25,7 +25,7 @@ router.post("/recipedetail", [
     .trim()
     .isLength({ min: 3, max: 100 })
     .withMessage("Publish up to 20 characters only")
-    .escape(),
+    .escape(),*/
    body("description")
     .trim()
     .isLength({ min: 3, max: 100 })
@@ -47,7 +47,11 @@ router.post("/recipedetail", [
       });
       return;
     }
-    const { title, author, published, description, ingredients } = req.body;
+    const { title, description, ingredients } = req.body;
+    var author="test";
+    var published = Date.now();
+    
+    console.log(author + published);
     new Recipe({
       title,
       author,
