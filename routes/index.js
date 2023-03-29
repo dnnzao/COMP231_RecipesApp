@@ -93,4 +93,34 @@ router.post(
   })
 );
 
+// Handle the POST request for updating a recipe
+router.post('/update/:id', async (req, res) => {
+  const { title, description, ingredients } = req.body;
+  const id = req.params.id;
+
+  try {
+      // Find the recipe by ID and update its properties
+      const recipe = await Recipe.findByIdAndUpdate(id, { title, description, ingredients });
+      // Redirect to the updated recipe's page
+      res.redirect(`/recipe/${id}`);
+  } catch (error) {
+      console.error(error);
+      // Handle errors appropriately
+      res.render('error');
+  }
+});
+
+// Delete recipe
+router.post('/delete', (req, res) => {
+  const id = req.body.userId;
+  Recipe.findByIdAndDelete(id, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).json({ error: 'Something went wrong' });
+    } else {
+      res.redirect('/list_recipes');
+    }
+  });
+});
+
 module.exports = router;
