@@ -4,14 +4,24 @@
         <%- include('../partials/head'); %>
     </head>
     <body>
+        <div>
         <header>
             <%- include('../partials/header'); %>
+            <link rel='stylesheet' href='/content/recipelist.css'/>
         </header>
+        </div><br>
+        <main>
         <div id="allPage">
             <h1>Recipe List</h1>
-            <div style="color:white">
+            <div style="color: dark green">
                 <table>
+                    <th>
+                
+                    <td>Author</td>
+                    <td>Date</td>
+                    </th>
                     <% for( var i=0; i < recipeList.length; i++) { %>
+
                             <tr>
                                 <td><a href="<%- '/recipe/' + recipeList[i]._id %>" target="_blank" ><%= recipeList[i].title %></a></td>
                                 <td><%= recipeList[i].author %></td>
@@ -34,9 +44,10 @@
                     <%  } %>
                 </table>
             </div>
-        </div>
+        </div><br>
         <footer>
             <%- include('../partials/footer'); %>
         </footer>
+        </main>
     </body>
 </html>
