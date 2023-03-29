@@ -5,6 +5,13 @@ const passport = require("passport");
 const { body, validationResult } = require("express-validator");
 let Recipe = require('../model/recipe');
 
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+}
+
 /* GET home page. */
 router.get("/", async function (req, res, next) {
   res.render("home", { title: "COMP 231 - Assignment 1 - Home Page" });
@@ -59,39 +66,25 @@ router.get("/contact", async function (req, res, next) {
 /* GET login page. */
 router.get("/login", function (req, res, next) {
   if (req.user) return res.redirect("/");
+  req.session.returnTo = req.query.returnTo || req.headers.referer;
   res.render("login", { title: "COMP 231 - Assignment 1 - Login" });
 });
 
 /* POST login page. */
-router.post("/login", function (req, res, next) {
-  req.logout(function (err) {
-    if (err) {
-      return next(err);
-    }
-    res.redirect("/");
-  });
-});
-
-/* POST for the Contact page*/
 router.post(
   "/login",
-  passport.authenticate('local',
-  (err, user, info) => {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      req.flash('loginMessage', 'Authentication Error');
-      return res.redirect('/login');
-    }
-    req.login(user, (err) => {
-      if (err) {
-        return next(err);
-      }
-      return res.redirect('/contact-list');
-    });
-  })
+  passport.authenticate("local", {
+    failureRedirect: "/login",
+    failureFlash: true,
+  }),
+  function (req, res) {
+    const returnTo = req.session.returnTo;
+    delete req.session.returnTo;
+    res.redirect(returnTo || "/");
+  }
 );
+
+
 
 // Handle the POST request for updating a recipe
 router.post('/update/:id', async (req, res) => {
@@ -119,6 +112,18 @@ router.post('/delete', (req, res) => {
       res.status(500).json({ error: 'Something went wrong' });
     } else {
       res.redirect('/list_recipes');
+    }
+  });
+});
+
+
+router.get('/logout', function(req, res) {
+  req.logout(function(err) {
+    if (err) {
+      console.log(err);
+      res.status(500).json({ error: 'Something went wrong' });
+    } else {
+      res.redirect('/');
     }
   });
 });
