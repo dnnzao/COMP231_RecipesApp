@@ -14,8 +14,6 @@ body {
     color: #ff008c;
   }
   
-
-
   .home_page_picture {
     width: 200px;
     height: 300px;
@@ -151,3 +149,11 @@ body {
   #test{
     color: greenyellow;
   }
+
+  form {
+    float: center;
+    margin-right: 10px; /* adjust as needed */
+}
+.button-container {
+    display: inline-block;
+}

@@ -2,18 +2,47 @@
 <html>
     <head>
         <%- include('../partials/head'); %>
+        <link rel='stylesheet' href='/content/recipe_detail.css'/>
     </head>
     <body>
+        <div>
         <header>
             <%- include('../partials/header'); %>
         </header>
+    </div><br>
+    <main>
         <div id="allPage">
-            <h1>List of Recipes</h1>
-            <div style="color:white">
-                <h1 style="color: black" ><%= recipe %></h1>       
+            <h1>Recipe</h1>
+            <div style="color: dark green" class="recipe-container">
+                <h1><%= recipe.title %></h1>       
+                <div class="recipe-details">
+                    <h4>Description:</h4>  
+                    <p><%= recipe.description %></p>       
+                </div>
+                <div class="recipe-details">
+                    <h4>Ingredients:</h4>  
+                    <p>
+                        <%= recipe.ingredients %>
+                    </p>      
+                </div>
+                <% if(currentUser && recipe.author === currentUser.username) { %>
+                <div id="button">                   
+                    <form action="/update" method="GET">
+                        <input style="display: none" value="<%- recipe._id %>" name="userId">
+                        <button type="submit">Update</button>
+                    </form>
+                    <br>
+                    <form action="/delete" method="POST">
+                        <input style="display: none" value="<%- recipe._id %>" name="userId">
+                        <button type="submit" <% if(!currentUser || recipe.author !== currentUser.username) { %>class="disabled" disabled<% } %>>Delete</button>
+                    </form>
+                </div><br><br><br><br><br>
+                <% } %>
+            </div>
         </div>
         <footer>
             <%- include('../partials/footer'); %>
         </footer>
+    </main>
     </body>
 </html>

@@ -2,6 +2,12 @@
 <html>
     <head>
         <%- include('../partials/head'); %>
+        <style>
+            .disabled {
+                opacity: 0.5;
+                pointer-events: none;
+            }
+        </style>
     </head>
     <body>
         <div>
@@ -21,6 +27,7 @@
                     <td>Date</td>
                     <td>Update</td>
                     <td>Delete</td>
+
                 </tr>                
                     <% for( var i=0; i < recipeList.length; i++) { %>
 
@@ -28,8 +35,7 @@
                                 <td><a href="<%- '/recipe/' + recipeList[i]._id %>" target="_blank" ><%= recipeList[i].title %></a></td>
                                 <td><%= recipeList[i].author %></td>
                                 <td><%= recipeList[i].published.toJSON().slice(0, 10) %></td>
-                                <!-- <td><%= recipeList[i].description %></td>
-                                <td><%= recipeList[i].ingredients %></td> -->
+                                <% if(currentUser && recipeList[i].author === currentUser.username) { %>
                                 <td>
                                     <form action="/update" method="GET">
                                         <input style="display: none" value="<%- recipeList[i]._id %>" name="userId">
@@ -39,9 +45,11 @@
                                 <td>
                                     <form action="/delete" method="POST">
                                         <input style="display: none" value="<%- recipeList[i]._id %>" name="userId">
-                                        <button type="submit">Delete</button>
+                                        <button type="submit" <% if(!currentUser || recipeList[i].author !== currentUser.username) { %>class="disabled" disabled<% } %>>Delete</button>
                                     </form>
+                                    
                                 </td>
+                                <% } %>
                             </tr>
                     <%  } %>
                 </table>
