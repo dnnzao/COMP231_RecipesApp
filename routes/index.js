@@ -19,17 +19,21 @@ router.get("/", async function (req, res, next) {
 
 
 
-/* GET list of recipes page. */
 router.get("/list_recipes", async function (req, res, next) {
   let recipeList = await Recipe.find();
   const search = req.query.search;
 
   if (search) {
+    const searchTerms = search.trim().toLowerCase().split(" ");
     recipeList = recipeList.filter((recipe) => {
-      return recipe.ingredients.includes(search);
-    }) 
+      return searchTerms.every(term => 
+        recipe.title.toLowerCase().includes(term) || 
+        recipe.ingredients.toLowerCase().includes(term)
+      );
+    });
   }
-  res.render("list_recipes", { title: "List of Recipes" , recipeList })
+  
+  res.render("list_recipes", { title: "List of Recipes", recipeList });
 });
 
 router.get("/recipe/:id", async function (req, res, next) {
@@ -37,7 +41,6 @@ router.get("/recipe/:id", async function (req, res, next) {
   const recipe = await Recipe.findById(id);
   res.render("recipe_detail", { title: "Recipe Detail", recipe });
 });
-
 
 router.get('/update', async (req, res, next) => {
   const id = req.query.userId;
