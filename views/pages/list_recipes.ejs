@@ -7,6 +7,9 @@
                 opacity: 0.5;
                 pointer-events: none;
             }
+            .hide {
+                display: none;
+            }
         </style>
     </head>
     <body>
@@ -25,9 +28,8 @@
                     <td>Recipe</td>
                     <td>Author</td>
                     <td>Date</td>
-                    <td>Update</td>
-                    <td>Delete</td>
-
+                    <td class="<% if(!currentUser) { %>hide<% } %>">Update</td>
+                    <td class="<% if(!currentUser) { %>hide<% } %>">Delete</td>
                 </tr>                
                     <% for( var i=0; i < recipeList.length; i++) { %>
 
@@ -43,7 +45,7 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="/delete" method="POST">
+                                    <form action="/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this recipe?');">
                                         <input style="display: none" value="<%- recipeList[i]._id %>" name="userId">
                                         <button type="submit" <% if(!currentUser || recipeList[i].author !== currentUser.username) { %>class="disabled" disabled<% } %>>Delete</button>
                                     </form>
