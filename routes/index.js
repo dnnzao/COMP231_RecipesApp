@@ -63,6 +63,27 @@ router.get("/contact", async function (req, res, next) {
     res.render("contact", { title: "COMP 231 - Assignment 1 - Contact" });
 });
 
+/* POST for the Contact page*/
+router.post(
+  "/login",
+  passport.authenticate('local',
+  (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      req.flash('loginMessage', 'Authentication Error');
+      return res.redirect('/login');
+    }
+    req.login(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      return res.redirect('/contact-list');
+    });
+  })
+);
+
 /* GET login page. */
 router.get("/login", function (req, res, next) {
   if (req.user) return res.redirect("/");
