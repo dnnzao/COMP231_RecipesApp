@@ -14,7 +14,9 @@
         <div id="allPage">
             <h1>Recipe</h1>
             <div style="color: dark green" class="recipe-container">
-                <h1><%= recipe.title %></h1>       
+                <h1><%= recipe.title %></h1> 
+                <h3>Author: <%= recipe.author %></h3>
+                <h3>Date Posted: <%= recipe.published.toJSON().slice(0, 10) %></h3>          
                 <div class="recipe-details">
                     <h4>Description:</h4>  
                     <p><%= recipe.description %></p>       
