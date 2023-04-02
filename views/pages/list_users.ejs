@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('../partials/head'); %>
+        
+    </head>
+    <body>
+        <header>
+            <%- include('../partials/header'); %>
+
+        </header>
+        <div id="allPage">
+            <h1>Business user List</h1>
+            <div style="color:white">
+                <form action="/user" method="GET">
+                    <button type="submit">Add New user</button>
+                </form>
+                <form action="/register_user" method="GET">
+                    <button type="submit">Add New User</button>
+                </form>
+                <table>
+                    <% for( var i=0; i < userList.length-1; i++) { %>
+                            <tr>
+                                <td><%- userList[i].username %></td>
+                                <td><%- userList[i].email %></td>
+                                <td>
+                                    <form action="/update" method="GET">
+                                        <input style="display: none" value="<%- userList[i]._id %>" name="userId">
+                                        <button type="submit">Update</button>
+                                    </form>
+                                </td>
+                                <td> 
+                                    <form action="/delete" method="POST">
+                                        <input style="display: none" value="<%- userList[i]._id %>" name="userId">
+                                        <button type="submit">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                    <%  } %>
+                </table>
+            </div>
+        </div>
+        <footer>
+            <%- include('../partials/footer'); %>
+        </footer>
+    </body>
+</html>
