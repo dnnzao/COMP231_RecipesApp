@@ -23,16 +23,30 @@
         <div id="allPage">
             <h1>Recipe List</h1>
             <div style="color: dark green">
-                <table>                   
-                <tr>
-                    <td>Recipe</td>
-                    <td>Author</td>
-                    <td>Date</td>
-                    <td class="<% if(!currentUser) { %>hide<% } %>">Update</td>
-                    <td class="<% if(!currentUser) { %>hide<% } %>">Delete</td>
-                </tr>                
-                    <% for( var i=0; i < recipeList.length; i++) { %>
-
+                <% if (recipeList.length === 0) { %>
+                    <h2>No recipe found with: "<%= search %>"</h2>
+                <% } else { %>
+                    <div>
+                        <form action="/list_recipes" method="GET">
+                            <% if (orderBy === "desc") { %>
+                                <input type="radio" id="order_recipes" name="order_recipes" value="desc" onchange="this.form.submit()" checked><label for="desc">Newest first</label><br>
+                                <input type="radio" id="order_recipes" name="order_recipes" value="asc" onchange="this.form.submit()" ><label for="asc">Oldest first</label><br>
+                            <% } %>
+                            <% if (orderBy === "asc") { %>
+                                <input type="radio" id="order_recipes" name="order_recipes" value="desc" onchange="this.form.submit()" ><label for="desc">Newest first</label><br>
+                                <input type="radio" id="order_recipes" name="order_recipes" value="asc" onchange="this.form.submit()" checked><label for="asc">Oldest first</label><br>
+                            <% } %>
+                        </form>
+                    </div>
+                    <table>                   
+                    <tr>
+                        <td>Recipe</td>
+                        <td>Author</td>
+                        <td>Date</td>
+                        <td class="<% if(!currentUser) { %>hide<% } %>">Update</td>
+                        <td class="<% if(!currentUser) { %>hide<% } %>">Delete</td>
+                    </tr>                
+                        <% for( var i=0; i < recipeList.length; i++) { %>
                             <tr>
                                 <td><a href="<%- '/recipe/' + recipeList[i]._id %>" target="_blank" ><%= recipeList[i].title %></a></td>
                                 <td><%= recipeList[i].author %></td>
@@ -53,8 +67,9 @@
                                 </td>
                                 <% } %>
                             </tr>
-                    <%  } %>
-                </table>
+                        <%  } %>
+                    </table>
+                <% } %>
             </div>
         </div><br>
         <footer>
