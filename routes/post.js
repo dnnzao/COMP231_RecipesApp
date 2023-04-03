@@ -27,21 +27,21 @@ router.get("/", function (req, res, next) {
 });
 
 /* POST for the User Register page*/
-router.post("/recipedetail", isAuthenticated, [
+router.post("/recipe_detail", isAuthenticated, [
   body("title")
     .trim()
-    .isLength({ min: 4, max: 100 })
-    .withMessage("Title up to 100 characters only")
+    .isLength({ min: 3 })
+    .withMessage("Title is minimum of 3 characters")
     .escape(),
   body("description")
     .trim()
-    .isLength({ min: 3, max: 100 })
-    .withMessage("up to 100 characters only")
+    .isLength({ min: 3 })
+    .withMessage("Description is minimum of 3 characters")
     .escape(),
   body("ingredients")
     .trim()
-    .isLength({ min: 3, max: 100 })
-    .withMessage("up to 100 characters only")
+    .isLength({ min: 3 })
+    .withMessage("Ingredients is minimum of 3 characters")
     .escape(),
   (req, res, next) => {
     const errors = validationResult(req);
