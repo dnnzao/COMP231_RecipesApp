@@ -15,6 +15,12 @@
             <fieldset><br><br><br><br><br>
             <legend><b>Please Login</b></legend><br><br><br><br>
             <br><br><br><br>
+            <% if (errorMsg) { %>
+                <div class="alert alert-danger" role="alert">
+                  <%= errorMsg %>
+                </div>
+              <% } %>
+            <br><br><br><br>
             <script>
                 console.log(document.location)
                 var urlSearch = document.location.pathname + document.location.search;
@@ -33,6 +39,8 @@
             <div id="img">
                 <img src="images/login.jpg" width="310" height="239" alt="register image"> 
             </div>
+
+            
         <footer>
             <%- include('../partials/footer'); %>
         </footer>

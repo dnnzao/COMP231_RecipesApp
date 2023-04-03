@@ -4,6 +4,10 @@ var router = express.Router();
 const passport = require("passport");
 const { body, validationResult } = require("express-validator");
 let Recipe = require('../model/recipe');
+const flash = require('connect-flash');
+
+// Add the following line to use connect-flash middleware
+router.use(flash());
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
@@ -70,12 +74,12 @@ router.get("/list_users", async function (req, res, next) {
 
 
 
-/* GET login page. */
 router.get("/login", function (req, res, next) {
   if (req.user) return res.redirect("/");
   req.session.returnTo = req.query.returnTo || req.headers.referer;
-  res.render("login", { title: "COMP 231 - Assignment 1 - Login" });
+  res.render("login", { title: "COMP 231 - Assignment 1 - Login", errorMsg: req.flash("error") });
 });
+
 
 /* POST login page. */
 router.post(
@@ -90,8 +94,6 @@ router.post(
     res.redirect(returnTo || "/");
   }
 );
-
-
 
 // Handle the POST request for updating a recipe
 router.post('/update/:id', async (req, res) => {
