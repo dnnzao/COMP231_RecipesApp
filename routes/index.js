@@ -80,20 +80,21 @@ router.get("/login", function (req, res, next) {
   res.render("login", { title: "COMP 231 - Assignment 1 - Login", errorMsg: req.flash("error") });
 });
 
-
-/* POST login page. */
-router.post(
-  "/login",
-  passport.authenticate("local", {
-    failureRedirect: "/login",
-    failureFlash: true,
-  }),
-  function (req, res) {
-    const returnTo = req.session.returnTo;
-    delete req.session.returnTo;
-    res.redirect(returnTo || "/");
-  }
-);
+router.post("/login", function (req, res, next) {
+  passport.authenticate("local", function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { 
+      req.flash("error", "Incorrect username or password.");
+      return res.redirect("/login"); 
+    }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      const returnTo = req.session.returnTo;
+      delete req.session.returnTo;
+      return res.redirect(returnTo || "/");
+    });
+  })(req, res, next);
+});
 
 // Handle the POST request for updating a recipe
 router.post('/update/:id', async (req, res) => {
