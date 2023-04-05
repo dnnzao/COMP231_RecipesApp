@@ -65,7 +65,7 @@ color: green;
   left: 430px;
 }
 
-#password1 {
+#email1 {
 text-align: center;
 float:left;
 position: absolute;
@@ -73,13 +73,7 @@ top:295px;
 left: 430px;
 }
 
-#email1 {
-  text-align: center;
-  float:left;
-  position: absolute;
-  top:360px;
-  left: 430px;
-  }
+
 
 #button {
 	text-align: center;
