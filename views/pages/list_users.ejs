@@ -24,13 +24,13 @@
                                 <td><%- userList[i].username %></td>
                                 <td><%- userList[i].email %></td>
                                 <td>
-                                    <form action="/update" method="GET">
+                                    <form action="/updateUser" method="GET">
                                         <input style="display: none" value="<%- userList[i]._id %>" name="userId">
                                         <button type="submit">Update</button>
                                     </form>
                                 </td>
                                 <td> 
-                                    <form action="/delete" method="POST">
+                                    <form action="/deleteUser" method="POST">
                                         <input style="display: none" value="<%- userList[i]._id %>" name="userId">
                                         <button type="submit">Delete</button>
                                     </form>
