@@ -75,6 +75,9 @@ router.get("/list_users", async function (req, res, next) {
   res.render("list_users", { title: "List of Users", userList });
 });
 
+
+
+
 // Initialize passport
 router.use(passport.initialize());
 router.use(passport.session());
@@ -109,8 +112,6 @@ passport.use('admin-local', new LocalStrategy(
   }
 ));
 
-
-
 router.get("/login", function (req, res, next) {
   if (req.user) return res.redirect("/");
   
@@ -134,6 +135,7 @@ router.post("/login", function(req, res, next) {
         if (err) {
           return next(err);
         }
+        req.user.isAdmin = false; // set isAdmin to false for regular user
         const returnTo = req.session.returnTo;
         delete req.session.returnTo;
         return res.redirect(returnTo || "/");
@@ -148,6 +150,7 @@ router.post("/login", function(req, res, next) {
             if (err) {
               return next(err);
             }
+            req.user.isAdmin = true; // set isAdmin to true for admin user
             const returnTo = req.session.returnTo;
             delete req.session.returnTo;
             return res.redirect(returnTo || "/");
@@ -161,6 +164,16 @@ router.post("/login", function(req, res, next) {
   })(req, res, next);
 });
 
+
+router.get('/', function(req, res) {
+  let currentUser = req.user;
+  if(currentUser && currentUser.roles.includes('admin')) {
+    currentUser.isAdmin = true;
+  } else {
+    currentUser.isAdmin = false;
+  }
+  res.render('/', { currentUser: currentUser });
+});
 
 // Handle the POST request for updating a recipe
 router.post('/update/:id', async (req, res) => {
