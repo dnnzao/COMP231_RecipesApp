@@ -162,15 +162,7 @@ router.post("/login", function(req, res, next) {
   })(req, res, next);
 });
 
-router.get('/', function(req, res) {
-  let currentUser = req.user;
-  if(currentUser && currentUser.roles.includes('admin')) {
-    currentUser.isAdmin = true;
-  } else {
-    currentUser.isAdmin = false;
-  }
-  res.render('/', { currentUser: currentUser });
-});
+
 
 // Handle the POST request for updating a recipe
 router.post('/update/:id', async (req, res) => {
