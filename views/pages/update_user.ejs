@@ -2,39 +2,44 @@
 <html>
     <head>
         <%- include('../partials/head'); %>
-        <link rel='stylesheet' href='/content/recipe_detail.css'/>
+        
     </head>
     <body>
-        <div>
         <header>
             <%- include('../partials/header'); %>
-        </header>
-    </div><br>
-    <main>
-        <div id="allPage">
-            <h1>User</h1>
-            <div style="color: dark green" class="recipe-container">
-                <h1><%= User.username %></h1> 
-                <h3>Author: <%= User.email %></h3>
-                
-               
-                <div id="button">                   
-                    <form action="/update" method="GET">
-                        <input style="display: none" value="<%- user._id %>" name="userId">
-                        <button type="submit">Update</button>
-                    </form>
-                    <br>
-                    <form action="/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this recipe?');">
-                        <input style="display: none" value="<%- recipe._id %>" name="userId">
-                        <button type="submit" <% if(!currentUser || recipe.author !== currentUser.username) { %>class="disabled" disabled<% } %>>Delete</button>
-                    </form>
-                </div><br><br><br><br><br>
+            <link rel='stylesheet' href='/content/register.css'/>
 
+        </header>
+        </header>
+        <div  class="text-center text-muted" >
+            <!-- <h1 class="text-center text-muted" >Contact</h1>-->
+                <main class="text-center text-muted" >
+                    <form class="form" action="/updateuser/<%= user._id %>" method="POST">
+                        <br>
+                        <fieldset><br>
+                            <legend><b>User Details</b></legend>
+                            <div id="username1">
+                                <label for="username"><b>Username: </b></label><br>
+                                <input class="contact_input" id="username" name="username" size="35" type="text" required="required" tabindex="1" value="<%= user.username %>">
+                            </div><br>
+                            <div id="email1">
+                                <label for="email"><b>Email: </b></label><br>
+                                <input class="contact_input" id="email" name="email" size="35" type="email" required="required" tabindex="7" value="<%= user.email %>">
+                            </div><br><br><br><br><br><br><br><br>
+                            <br>
+                            <div id="button">
+                                <button type="submit" name="btnSubmit" value="Complete Registration" tabindex="36">Update Account</button>
+                                <button type="reset" name="btnReset" value="Clear Form" onclick="return confirm('Do you really want to reset?')" tabindex="39">Reset</button>
+                            </div><br><br><br><br><br>
+                        </fieldset><br>
+                        <div id="img">
+                         <img src="images/register.jpg" width="350" height="260" alt="register image"> 
+                        </div>
+                    </form>
+                </main>
             </div>
-        </div>
         <footer>
             <%- include('../partials/footer'); %>
         </footer>
-    </main>
     </body>
 </html>

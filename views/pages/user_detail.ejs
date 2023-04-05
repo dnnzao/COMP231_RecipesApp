@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('../partials/head'); %>
+        <link rel='stylesheet' href='/content/recipe_detail.css'/>
+    </head>
+    <body>
+        <header>
+            <%- include('../partials/header'); %>
+        </header>
+        <main>
+            <div id="allPage">
+                <h1>User: <%= user.username %></h1> 
+                <h1>Email: <%= user.email %></h1>
+                <div id="button">                   
+                    <form action="/updateUser" method="GET">
+                        <input style="display: none" value="<%= user._id %>" name="userId">
+                        <button type="submit">Update</button>
+                    </form>
+                    <form action="/deleteUser" method="POST">
+                        <input style="display: none" value="<%= user._id %>" name="userId">
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <%- include('../partials/footer'); %>
+        </footer>
+    </body>
+</html>

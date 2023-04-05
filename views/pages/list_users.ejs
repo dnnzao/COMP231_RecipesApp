@@ -7,7 +7,7 @@
     <body>
         <header>
             <%- include('../partials/header'); %>
-
+            <link rel='stylesheet' href='/content/userlist.css'/>
         </header>
         <div id="allPage">
             <h1>Business user List</h1>
@@ -21,7 +21,7 @@
                 <table>
                     <% for( var i=0; i < userList.length-1; i++) { %>
                             <tr>
-                                <td><%- userList[i].username %></td>
+                                <td><a href="<%- '/user/' + userList[i]._id %>" target="_blank" ><%- userList[i].username %></a></td>
                                 <td><%- userList[i].email %></td>
                                 <td>
                                     <form action="/updateUser" method="GET">

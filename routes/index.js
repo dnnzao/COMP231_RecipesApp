@@ -146,9 +146,43 @@ router.get('/updateUser', (req, res) => {
       console.error(err);
       res.status(500).send('Error retrieving user');
     } else {
-      res.render('update_user', { user: user });
+      res.render('update_user', { title: "User update", user});
     }
   });
 });
+
+// POST /updateuser/:userId
+router.post('/updateuser/:userId', async (req, res) => {
+  const { userId } = req.params;
+  const { username, email } = req.body;
+
+  try {
+    const user = await User.findByIdAndUpdate(userId, { username, email }, { new: true });
+    res.redirect('/'); // or wherever you want to redirect after the user is updated
+  } catch (err) {
+    console.error(err);
+    res.render('error'); // or some other error handling mechanism
+  }
+});
+
+router.get("/user/:id", async function (req, res, next) {
+  const id = req.params.id;
+  const user = await User.findById(id);
+  res.render("user_detail", { title: "User Detail", user });
+});
+
+// Delete user
+router.post('/deleteuser', (req, res) => {
+  const id = req.body.userId;
+  Recipe.findByIdAndDelete(id, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).json({ error: 'Something went wrong' });
+    } else {
+      res.redirect('/list_users');
+    }
+  });
+});
+
 
 module.exports = router;
