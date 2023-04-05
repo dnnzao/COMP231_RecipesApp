@@ -23,6 +23,7 @@ function isAuthenticated(req, res, next) {
 router.get("/", function (req, res, next) {
   res.render("post", {
     title: "COMP 231 - Assignment 1 - Add recipe",
+    errors: []
   });
 });
 

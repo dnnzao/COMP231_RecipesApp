@@ -4,7 +4,10 @@ var router = express.Router();
 const passport = require("passport");
 const { body, validationResult } = require("express-validator");
 let Recipe = require('../model/recipe');
+const Admin = require("../model/admin");
 const flash = require('connect-flash');
+const LocalStrategy = require('passport-local').Strategy;
+
 
 // Add the following line to use connect-flash middleware
 router.use(flash());
@@ -72,29 +75,92 @@ router.get("/list_users", async function (req, res, next) {
   res.render("list_users", { title: "List of Users", userList });
 });
 
+// Initialize passport
+router.use(passport.initialize());
+router.use(passport.session());
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (user.password !== password) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+passport.use('admin-local', new LocalStrategy(
+  function(username, password, done) {
+    Admin.findOne({ username: username }, function (err, admin) {
+      if (err) { return done(err); }
+      if (!admin) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (admin.password !== password) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, admin);
+    });
+  }
+));
+
 
 
 router.get("/login", function (req, res, next) {
   if (req.user) return res.redirect("/");
-  req.session.returnTo = req.query.returnTo || req.headers.referer;
-  res.render("login", { title: "COMP 231 - Assignment 1 - Login", errorMsg: req.flash("error") });
+  
+  // Check if user is an admin
+  if (req.query.admin === 'true') {
+    req.session.returnTo = req.query.returnTo || req.headers.referer;
+    res.render("admin-login", { title: "Admin Login", errorMsg: req.flash("error") });
+  } else {
+    req.session.returnTo = req.query.returnTo || req.headers.referer;
+    res.render("login", { title: "COMP 231 - Assignment 1 - Login", errorMsg: req.flash("error") });
+  }
 });
 
-router.post("/login", function (req, res, next) {
+router.post("/login", function(req, res, next) {
   passport.authenticate("local", function(err, user, info) {
-    if (err) { return next(err); }
-    if (!user) { 
-      req.flash("error", "Incorrect username or password.");
-      return res.redirect("/login"); 
+    if (err) {
+      return next(err);
     }
-    req.logIn(user, function(err) {
-      if (err) { return next(err); }
-      const returnTo = req.session.returnTo;
-      delete req.session.returnTo;
-      return res.redirect(returnTo || "/");
-    });
+    if (user) {
+      req.logIn(user, function(err) {
+        if (err) {
+          return next(err);
+        }
+        const returnTo = req.session.returnTo;
+        delete req.session.returnTo;
+        return res.redirect(returnTo || "/");
+      });
+    } else {
+      passport.authenticate("admin-local", function(err, admin, info) {
+        if (err) {
+          return next(err);
+        }
+        if (admin) {
+          req.logIn(admin, function(err) {
+            if (err) {
+              return next(err);
+            }
+            const returnTo = req.session.returnTo;
+            delete req.session.returnTo;
+            return res.redirect(returnTo || "/");
+          });
+        } else {
+          req.flash("error", "Incorrect username or password.");
+          return res.redirect("/login");
+        }
+      })(req, res, next);
+    }
   })(req, res, next);
 });
+
 
 // Handle the POST request for updating a recipe
 router.post('/update/:id', async (req, res) => {
@@ -102,7 +168,8 @@ router.post('/update/:id', async (req, res) => {
   const id = req.params.id;
 
   try {
-      // Find the recipe by ID and update its properties
+      // Find the recipe by ID and update its propenpm start
+      rties
       const recipe = await Recipe.findByIdAndUpdate(id, { title, description, ingredients });
       // Redirect to the updated recipe's page
       res.redirect(`/recipe/${id}`);

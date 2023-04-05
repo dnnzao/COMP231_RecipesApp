@@ -55,11 +55,22 @@
 
                     </form>
                     <div id="img">
-                         <img src="images/post.png" width="285" height="800" alt="register image"> 
+                         <img src="/images/post.png" width="285" height="800" alt="register image"> 
                     </div>
                 </main>
+                <% if (errors && errors.length > 0) { %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="errors">
+                        <h4 style="color: darkred;">Errors</h4>
+                      <ul style="list-style: none;">
+                        <% errors.forEach(error => { %>
+                          <li style="color: red;"><%= error.msg %></li>
+                        <% }) %>
+                      </ul>
+                    </div>
+                  <% } %>
             </div><br><br>
-
+           
         <footer>
             <%- include('../partials/footer'); %>
         </footer>

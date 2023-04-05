@@ -9,6 +9,7 @@ const user_schema = new mongoose.Schema({
   collection: "admin"
 });
 
+
 const Admin = mongoose.model("Admin", user_schema);
 
 module.exports = Admin;

@@ -2,6 +2,7 @@
 <html>
     <head>
         <%- include('../partials/head'); %>
+       
         
     </head>
     <body>
@@ -15,6 +16,7 @@
             <!-- <h1 class="text-center text-muted" >Contact</h1>-->
                 <main class="text-center text-muted" >
                     <form class="form" action="/register_user/info" method="POST">
+                         
                         <br>
                         <fieldset><br>
                             <legend><b>Please Register</b></legend>
@@ -31,15 +33,28 @@
                                 <input class="contact_input" id="email" name="email" size="35" type="email" required="required" tabindex="7">
                             </div><br><br><br><br><br><br><br><br>
 
+                      
+
                             <div id="button">
                                 <button type="submit" name="btnSubmit" value="Complete Registration" tabindex="36">Register Account</button>
                                 <button type="reset" name="btnReset" value="Clear Form" onclick="return confirm('Do you really want to reset?')" tabindex="39">Reset</button>
                             </div><br><br><br><br><br>
                         </fieldset><br>
                         <div id="img">
-                         <img src="images/register.jpg" width="350" height="260" alt="register image"> 
+                         <img src="/images/register.jpg" width="350" height="260" alt="register image"> 
                         </div>
+                        
                     </form>
+
+                    <% if (errors && errors.length > 0) { %>
+                        <div class="errors">
+                          <ul style="list-style: none;">
+                            <% errors.forEach(error => { %>
+                              <li style="color: red;"><%= error.msg %></li>
+                            <% }) %>
+                          </ul>
+                        </div>
+                      <% } %>
                 </main>
             </div>
         <footer>

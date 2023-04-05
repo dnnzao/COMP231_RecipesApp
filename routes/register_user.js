@@ -6,6 +6,7 @@ const { body, validationResult } = require("express-validator");
 router.get("/", function (req, res, next) {
   res.render("register_user", {
     title: "COMP 231 - Assignment 1 - Register User",
+    errors: []
   });
 });
 
@@ -22,27 +23,41 @@ router.post("/info", [
     .withMessage("Password should have 3 to 20 characters")
     .escape(),
   body("email", "Email is invalid").isEmail().normalizeEmail(),
-
-  (req, res, next) => {
+], async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.render("register_user", {
         user: req.body,
         errors: errors.array(),
         title: "COMP 231 - Assignment 1 - Register Fail",
+    
       });
       return;
     }
     const { username, password, email } = req.body;
-    new User({
-      username,
-      password,
-      email,
-    }).save((err) => {
-      if (err) return next(err);
-      res.redirect("/");
-    });
-  },
-]);
+
+    try {
+      const user = await User.findOne({ email });
+      if (user) {
+        res.render("register_user", {
+          user: req.body,
+          errors: [{ msg: "Email already exists" }],
+          title: "COMP 231 - Assignment 1 - Register Fail",
+
+        });
+        return;
+      }
+      new User({
+        username,
+        password,
+        email,
+      }).save((err) => {
+        if (err) return next(err);
+        res.redirect("/");
+      });
+    } catch (err) {
+      return next(err);
+    }
+});
 
 module.exports = router;

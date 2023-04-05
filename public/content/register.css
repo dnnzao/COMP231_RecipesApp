@@ -155,3 +155,7 @@ li.list-group-item-dark {
 #test{
   color: greenyellow;
 }
+
+.error {
+  color: red;
+}
