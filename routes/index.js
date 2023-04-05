@@ -174,7 +174,7 @@ router.get("/user/:id", async function (req, res, next) {
 // Delete user
 router.post('/deleteuser', (req, res) => {
   const id = req.body.userId;
-  Recipe.findByIdAndDelete(id, (err, result) => {
+  User.findByIdAndDelete(id, (err, result) => {
     if (err) {
       console.log(err);
       res.status(500).json({ error: 'Something went wrong' });
