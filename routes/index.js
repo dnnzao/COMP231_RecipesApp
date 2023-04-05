@@ -138,5 +138,17 @@ router.get('/logout', function(req, res) {
   }); 
 });
 
+router.get('/updateUser', (req, res) => {
+  const userId = req.query.userId;
+  // use the userId to retrieve the user from the database
+  User.findById(userId, (err, user) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error retrieving user');
+    } else {
+      res.render('update_user', { user: user });
+    }
+  });
+});
 
 module.exports = router;

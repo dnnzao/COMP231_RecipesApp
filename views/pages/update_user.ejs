@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('../partials/head'); %>
+        <link rel='stylesheet' href='/content/recipe_detail.css'/>
+    </head>
+    <body>
+        <div>
+        <header>
+            <%- include('../partials/header'); %>
+        </header>
+    </div><br>
+    <main>
+        <div id="allPage">
+            <h1>User</h1>
+            <div style="color: dark green" class="recipe-container">
+                <h1><%= User.username %></h1> 
+                <h3>Author: <%= User.email %></h3>
+                
+               
+                <div id="button">                   
+                    <form action="/update" method="GET">
+                        <input style="display: none" value="<%- user._id %>" name="userId">
+                        <button type="submit">Update</button>
+                    </form>
+                    <br>
+                    <form action="/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this recipe?');">
+                        <input style="display: none" value="<%- recipe._id %>" name="userId">
+                        <button type="submit" <% if(!currentUser || recipe.author !== currentUser.username) { %>class="disabled" disabled<% } %>>Delete</button>
+                    </form>
+                </div><br><br><br><br><br>
+
+            </div>
+        </div>
+        <footer>
+            <%- include('../partials/footer'); %>
+        </footer>
+    </main>
+    </body>
+</html>
