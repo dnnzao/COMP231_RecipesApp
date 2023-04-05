@@ -135,7 +135,6 @@ router.post("/login", function(req, res, next) {
         if (err) {
           return next(err);
         }
-        req.user.isAdmin = false; // set isAdmin to false for regular user
         const returnTo = req.session.returnTo;
         delete req.session.returnTo;
         return res.redirect(returnTo || "/");
@@ -150,7 +149,6 @@ router.post("/login", function(req, res, next) {
             if (err) {
               return next(err);
             }
-            req.user.isAdmin = true; // set isAdmin to true for admin user
             const returnTo = req.session.returnTo;
             delete req.session.returnTo;
             return res.redirect(returnTo || "/");
@@ -163,7 +161,6 @@ router.post("/login", function(req, res, next) {
     }
   })(req, res, next);
 });
-
 
 router.get('/', function(req, res) {
   let currentUser = req.user;
