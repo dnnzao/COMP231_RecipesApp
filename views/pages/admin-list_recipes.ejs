@@ -43,7 +43,6 @@
                         <td>Recipe</td>
                         <td>Author</td>
                         <td>Date</td>
-                        <td>Update</td>
                         <td>Delete</td>
                     </tr>                
                         <% for( var i=0; i < recipeList.length; i++) { %>
@@ -51,12 +50,7 @@
                                 <td><a href="<%- '/admin-recipe/' + recipeList[i]._id %>" target="_blank" ><%= recipeList[i].title %></a></td>
                                 <td><%= recipeList[i].author %></td>
                                 <td><%= recipeList[i].published.toJSON().slice(0, 10) %></td>
-                                <td>
-                                    <form action="/updateadmin" method="GET">
-                                        <input style="display: none" value="<%- recipeList[i]._id %>" name="id">
-                                        <button type="submit">Update</button>
-                                    </form>
-                                </td>
+                                
                                 <td>
                                     <form action="/admin-delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this recipe?');">
                                         <input style="display: none" value="<%- recipeList[i]._id %>" name="id">
