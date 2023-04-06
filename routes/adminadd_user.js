@@ -4,13 +4,14 @@ var router = express.Router();
 const { body, validationResult } = require("express-validator");
 
 router.get("/", function (req, res, next) {
-  res.render("admin-add_user", {
-    title: "COMP 231 - Assignment 1 - Register User"
+  res.render("adminadd_user", {
+    title: "COMP 231 - Assignment 1 - Register User",
+    errors: []
   });
 });
 
 /* POST for the User Register page*/
-router.post("/info", [
+router.post("/information", [
   body("username")
     .trim()
     .isLength({ min: 4, max: 20 })
@@ -25,7 +26,7 @@ router.post("/info", [
 ], async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.render("register_user", {
+      res.render("adminadd_user", {
         user: req.body,
         errors: errors.array(),
         title: "COMP 231 - Assignment 1 - Register Fail",
@@ -38,19 +39,19 @@ router.post("/info", [
     try {
       const user = await User.findOne({ email });
       if (user) {
-        res.render("admin-add_user", {
+        res.render("adminadd_user", {
           user: req.body,
           errors: [{ msg: "Email already exists" }],
           title: "COMP 231 - Assignment 1 - Register Fail",
-
         });
         return;
       }
-      new User({
+      const newUser = new User({
         username,
         password,
         email,
-      }).save((err) => {
+      });
+      newUser.save((err) => {
         if (err) return next(err);
         res.redirect("/list_users");
       });

@@ -69,6 +69,8 @@ app.use("/register_user", registerUser);
 var postRouter = require("./routes/post");
 app.use("/post", postRouter);
 
+var adminaddUserRouter = require("./routes/adminadd_user");
+app.use("/adminadd_user", adminaddUserRouter);
 
 // cookie parser middleware
 var cookieParser = require("cookie-parser");

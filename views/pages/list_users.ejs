@@ -12,12 +12,12 @@
         <div id="allPage">
             <h1>Business user List</h1>
             <div style="color: black">
-                <form action="/register_user" method="GET">
+                <form action="/adminadd_user" method="GET">
                     <button type="submit">Add New User</button>
                 </form>
                 <br>
                 <table>
-                    <% for( var i=0; i < userList.length-1; i++) { %>
+                    <% for( var i=0; i < userList.length; i++) { %>
                             <tr>
                                 <td><a href="<%- '/user/' + userList[i]._id %>" target="_blank" ><%- userList[i].username %></a></td>
                                 <td><%- userList[i].email %></td>

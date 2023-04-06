@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%- include('../partials/head'); %>
-       
-        
+        <%- include('../partials/head'); %>       
     </head>
     <body>
         <header>
@@ -11,15 +9,16 @@
             <link rel='stylesheet' href='/content/register.css'/>
 
         </header>
-        </header>
+
         <div  class="text-center text-muted" >
             <!-- <h1 class="text-center text-muted" >Contact</h1>-->
                 <main class="text-center text-muted" >
-                    <form class="form" action="/admin-add_user/info" method="POST">
+                    <form class="form" action="/adminadd_user/information" method="POST">
                          
                         <br>
                         <fieldset><br>
-                            <legend><b>Please Register</b></legend>
+                            <legend><b>Please Add User</b></legend>
+                        
                             <div id="username1">
                                 <label for="username"><b>Username: </b></label><br>
                                 <input class="contact_input" id="username" name="username" size="35" type="text" required="required" tabindex="1">
@@ -45,7 +44,7 @@
                         </div>
                         
                     </form>
-
+                    
                 </main>
             </div>
         <footer>

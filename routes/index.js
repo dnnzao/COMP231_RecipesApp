@@ -96,8 +96,8 @@ router.get("/top_recipes", async function (req, res, next) {
 });
 
 /* GET top recipes */
-router.get("/admin-add_user", async function (req, res, next) {
-  res.render("admin-add_user", { title: "COMP 231 - Assignment 1 - Top Recipes" });
+router.get("/adminadd_user", async function (req, res, next) {
+  res.render("adminadd_user", { title: "COMP 231 - Assignment 1 - Top Recipes" });
 });
 
 /* GET contact */
