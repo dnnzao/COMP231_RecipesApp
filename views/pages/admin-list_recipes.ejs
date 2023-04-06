@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('../partials/head'); %>
+        <style>
+            .disabled {
+                opacity: 0.5;
+                pointer-events: none;
+            }
+            .hide {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+        <header>
+            <%- include('../partials/header-admin'); %>
+            <link rel='stylesheet' href='/content/recipelist.css'/>
+        </header>
+        </div><br>
+        <main>
+        <div id="allPage">
+            <h1>Recipe List</h1>
+            <div style="color: dark green">
+                <% if (recipeList.length === 0) { %>
+                    <h2>No recipe found with: "<%= search %>"</h2>
+                <% } else { %>
+                    <div>
+                        <form action="/admin-list_recipes" method="GET">
+                            <% if (orderBy === "desc") { %>
+                                <input type="radio" id="order_recipes" name="order_recipes" value="desc" onchange="this.form.submit()" checked><label for="desc">Newest first</label><br>
+                                <input type="radio" id="order_recipes" name="order_recipes" value="asc" onchange="this.form.submit()" ><label for="asc">Oldest first</label><br>
+                            <% } %>
+                            <% if (orderBy === "asc") { %>
+                                <input type="radio" id="order_recipes" name="order_recipes" value="desc" onchange="this.form.submit()" ><label for="desc">Newest first</label><br>
+                                <input type="radio" id="order_recipes" name="order_recipes" value="asc" onchange="this.form.submit()" checked><label for="asc">Oldest first</label><br>
+                            <% } %>
+                        </form>
+                    </div>
+                    <table>                   
+                    <tr>
+                        <td>Recipe</td>
+                        <td>Author</td>
+                        <td>Date</td>
+                        <td>Delete</td>
+                    </tr>                
+                        <% for( var i=0; i < recipeList.length; i++) { %>
+                            <tr>
+                                <td><a href="<%- '/recipe/' + recipeList[i]._id %>" target="_blank" ><%= recipeList[i].title %></a></td>
+                                <td><%= recipeList[i].author %></td>
+                                <td><%= recipeList[i].published.toJSON().slice(0, 10) %></td>
+                    
+                                <td>
+                                    <form action="/admin-delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this recipe?');">
+                                        <input style="display: none" value="<%- recipeList[i]._id %>" name="userId">
+                                        <button type="submit">Delete</button>
+                                    </form>
+                                    
+                                </td>
+                  
+                            </tr>
+                        <%  } %>
+                    </table>
+                <% } %>
+            </div>
+        </div><br>
+        <footer>
+            <%- include('../partials/footer'); %>
+        </footer>
+        </main>
+    </body>
+</html>

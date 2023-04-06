@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html><br><br><br><br><br><br>
+    <head>
+        <%- include('../partials/head'); %>
+        
+    </head>
+    <body>
+        <header>
+            <%- include('../partials/header-admin'); %>
+            <link rel='stylesheet' href='/content/home.css'/>
+
+        </header>
+        <div  id="search">
+            <form class="form" action="/admin-list_recipes" method="GET"><br>
+             <div style="text-align:center;" class="search-wrapper">
+                <div className="form-group">
+                    <input
+                        type="text"
+                        size="50"
+                        className="form-control"
+                        placeholder="Searching..."
+                        name="search"
+                    />
+                    <button className="search-btn">Search</button>
+                </div>
+             </div>
+             
+            </form><br>
+        </div>
+
+
+        <div class="hero-image">
+              <div class="hero-text">
+                 <img class="home_hero_image" src="/images/heroimage.png" style="display: block;margin-left: auto;margin-right: auto;" float="right" height="380px" width="650px" alt="hero image">
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <footer>
+                <%- include('../partials/footer'); %>
+                </footer>
+              </div>
+        </div>
+
+
+         
+
+       <!-- <h3 class="text-center text-muted">
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/list_recipes">List of recipes</a>
+            <a class="nav-link" href="/top_recipes">Top Recipes</a>
+            <a class="nav-link" href="/post">Post</a>
+            <a class="nav-link" href="/contact">Contact</a>
+            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="/add_recipe">Add Recipe</a>
+        </h3> -->
+        <div id="img">
+            <img src="images/header2.jpg" width="880" height="135" alt="header image"> 
+        </div>
+        <div id="img1">
+            <img src="images/post1.png" width="230" height="480" alt="side image"> 
+        </div> 
+                <div>
+</div>
+
+        </div>
+    </body>
+</html>
+
+<!--additional image 
+veges https://www.google.com/search?q=ingredients+panorama+png+&tbm=isch&ved=2ahUKEwi4v63EsvP9AhVoFmIAHX2dAJ0Q2-cCegQIABAA&oq=ingredients+panorama+png+&gs_lcp=CgNpbWcQAzIECCMQJ1C-BlilD2DeFWgAcAB4AIABkwGIAdYEkgEDNS4ymAEAoAEBqgELZ3dzLXdpei1pbWfAAQE&sclient=img&ei=L_ocZPjrLuisiLMP_bqC6Ak&bih=757&biw=1600#imgrc=3FWBqNAR8-R_CM
+header2
+https://stock.adobe.com/ru/images/photo-collage-set-of-raw-meat-on-a-black-background-top-view/361957398?as_campaign=ftmigration2&as_channel=dpcft&as_campclass=brand&as_source=ft_web&as_camptype=acquisition&as_audience=users&as_content=closure_asset-detail-page
+-->

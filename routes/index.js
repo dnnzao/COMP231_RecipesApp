@@ -24,7 +24,15 @@ router.get("/", async function (req, res, next) {
   res.render("home", { title: "COMP 231 - Group Project- Home Page" });
 });
 
+/* GET home page for admin */
+router.get("/admin-home", async function (req, res, next) {
+  res.render("admin-home", { title: "COMP 231 - Group Project- Home Page" });
+});
 
+/* GET post for admin */
+router.get("/admin-post", async function (req, res, next) {
+  res.render("admin-post", { title: "COMP 231 - Group Project- Home Page" });
+});
 
 router.get("/list_recipes", async function (req, res, next) {
   const orderBy = req.query.order_recipes || "desc";
@@ -50,11 +58,31 @@ router.get("/recipe/:id", async function (req, res, next) {
   res.render("recipe_detail", { title: "Recipe Detail", recipe });
 });
 
-router.get('/update', async (req, res, next) => {
-  const id = req.query.userId;
-  const recipe = await Recipe.findById(id);
-  res.render('update_recipes', { title: "Recipe Update", recipe });
+router.get("/admin-list_recipes", async function (req, res, next) {
+  const orderBy = req.query.order_recipes || "desc";
+  let recipeList = await Recipe.find().sort({ published : orderBy });
+  const search = req.query.search;
+
+  if (search) {
+    const searchTerms = search.trim().toLowerCase().split(" ");
+    recipeList = recipeList.filter((recipe) => {
+      return searchTerms.some(term => 
+        recipe.title.toLowerCase().includes(term) || 
+        recipe.ingredients.toLowerCase().includes(term)
+      );
+    });
+  }
+  
+  res.render("admin-list_recipes", { title: "List of Recipes", recipeList , search, orderBy});
 });
+
+router.get("/recipe/:id", async function (req, res, next) {
+  const id = req.params.id;
+  const recipe = await Recipe.findById(id);
+  res.render("admin-recipe_detail", { title: "Recipe Detail", recipe });
+});
+
+
 
 
 /* GET top recipes*/ 
@@ -77,8 +105,6 @@ router.get("/list_users", async function (req, res, next) {
 
 
 
-
-// Initialize passport
 router.use(passport.initialize());
 router.use(passport.session());
 
@@ -111,6 +137,9 @@ passport.use('admin-local', new LocalStrategy(
     });
   }
 ));
+
+
+
 
 router.get("/login", function (req, res, next) {
   if (req.user) return res.redirect("/");
@@ -151,17 +180,20 @@ router.post("/login", function(req, res, next) {
             }
             const returnTo = req.session.returnTo;
             delete req.session.returnTo;
-            return res.redirect(returnTo || "/");
+
+            // Save the admin as the current user
+            req.user = admin;
+
+            return res.redirect(returnTo || "/admin-home");
           });
         } else {
           req.flash("error", "Incorrect username or password.");
-          return res.redirect("/login");
+          return res.redirect("/");
         }
       })(req, res, next);
     }
   })(req, res, next);
 });
-
 
 
 // Handle the POST request for updating a recipe
@@ -171,7 +203,6 @@ router.post('/update/:id', async (req, res) => {
 
   try {
       // Find the recipe by ID and update its propenpm start
-      rties
       const recipe = await Recipe.findByIdAndUpdate(id, { title, description, ingredients });
       // Redirect to the updated recipe's page
       res.redirect(`/recipe/${id}`);
@@ -191,6 +222,19 @@ router.post('/delete', (req, res) => {
       res.status(500).json({ error: 'Something went wrong' });
     } else {
       res.redirect('/list_recipes');
+    }
+  });
+});
+
+// Delete recipe
+router.post('/admin-delete', (req, res) => {
+  const id = req.body.userId;
+  Recipe.findByIdAndDelete(id, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).json({ error: 'Something went wrong' });
+    } else {
+      res.redirect('/admin-list_recipes');
     }
   });
 });
@@ -227,7 +271,7 @@ router.post('/updateuser/:userId', async (req, res) => {
 
   try {
     const user = await User.findByIdAndUpdate(userId, { username, email }, { new: true });
-    res.redirect('/'); // or wherever you want to redirect after the user is updated
+    res.redirect('/list_users'); // or wherever you want to redirect after the user is updated
   } catch (err) {
     console.error(err);
     res.render('error'); // or some other error handling mechanism
@@ -252,6 +296,7 @@ router.post('/deleteuser', (req, res) => {
     }
   });
 });
+
 
 
 module.exports = router;
