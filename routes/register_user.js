@@ -10,6 +10,7 @@ router.get("/", function (req, res, next) {
   });
 });
 
+
 /* POST for the User Register page*/
 router.post("/info", [
   body("username")

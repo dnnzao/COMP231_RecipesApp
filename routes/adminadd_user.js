@@ -6,7 +6,7 @@ const { body, validationResult } = require("express-validator");
 router.get("/", function (req, res, next) {
   res.render("adminadd_user", {
     title: "COMP 231 - Assignment 1 - Register User",
-    errors: []
+     errors: []
   });
 });
 
