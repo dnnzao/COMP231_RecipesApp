@@ -26,6 +26,17 @@
                             <div id="password1">
                                 <label for="password"><b>Password: </b></label><br>
                                 <input class="contact_input" id="password" name="password" size="35" type="password" required="required" tabindex="5">
+                                <input type="checkbox" onclick="togglePassword()"> Show password
+                                <script>
+                                function togglePassword() {
+                                  var password = document.getElementById("password");
+                                  if (password.type === "password") {
+                                    password.type = "text";
+                                  } else {
+                                    password.type = "password";
+                                  }
+                                }
+                                </script>
                             </div><br>
                             <div id="email1">
                                 <label for="email"><b>Email: </b></label><br>
