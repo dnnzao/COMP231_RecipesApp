@@ -30,12 +30,12 @@
                 <% if(currentUser && recipe.author === currentUser.username) { %>
                 <div id="button">                   
                     <form action="/update" method="GET">
-                        <input style="display: none" value="<%- recipe._id %>" name="userId">
+                        <input style="display: none" value="<%- recipe._id %>" name="id">
                         <button type="submit">Update</button>
                     </form>
                     <br>
                     <form action="/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this recipe?');">
-                        <input style="display: none" value="<%- recipe._id %>" name="userId">
+                        <input style="display: none" value="<%- recipe._id %>" name="id">
                         <button type="submit" <% if(!currentUser || recipe.author !== currentUser.username) { %>class="disabled" disabled<% } %>>Delete</button>
                     </form>
                 </div><br><br><br><br><br>

@@ -76,7 +76,7 @@ router.get("/admin-list_recipes", async function (req, res, next) {
   res.render("admin-list_recipes", { title: "List of Recipes", recipeList , search, orderBy});
 });
 
-router.get("/recipe/:id", async function (req, res, next) {
+router.get("/admin-recipe/:id", async function (req, res, next) {
   const id = req.params.id;
   const recipe = await Recipe.findById(id);
   res.render("admin-recipe_detail", { title: "Recipe Detail", recipe });
@@ -95,7 +95,10 @@ router.get("/top_recipes", async function (req, res, next) {
     res.render("top_recipes", { title: "COMP 231 - Assignment 1 - Top Recipes" });
 });
 
-
+/* GET top recipes */
+router.get("/admin-add_user", async function (req, res, next) {
+  res.render("admin-add_user", { title: "COMP 231 - Assignment 1 - Top Recipes" });
+});
 
 /* GET contact */
 router.get("/list_users", async function (req, res, next) {
@@ -195,6 +198,22 @@ router.post("/login", function(req, res, next) {
   })(req, res, next);
 });
 
+// Display the form for updating a recipe
+router.get('/update', async (req, res) => {
+  const recipeId = req.query.id;
+  try {
+    const recipe = await Recipe.findById(recipeId);
+    if (!recipe) {
+      res.status(404).send('Recipe not found');
+    } else {
+      res.render('update_recipes', { title: "Recipe update", recipe });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+});
+
 
 // Handle the POST request for updating a recipe
 router.post('/update/:id', async (req, res) => {
@@ -202,20 +221,22 @@ router.post('/update/:id', async (req, res) => {
   const id = req.params.id;
 
   try {
-      // Find the recipe by ID and update its propenpm start
-      const recipe = await Recipe.findByIdAndUpdate(id, { title, description, ingredients });
-      // Redirect to the updated recipe's page
-      res.redirect(`/recipe/${id}`);
+    // Find the recipe by ID and update its properties
+    const recipe = await Recipe.findByIdAndUpdate(id, { title, description, ingredients });
+    // Redirect to the updated recipe's page
+    res.redirect(`/recipe/${id}`);
   } catch (error) {
-      console.error(error);
-      // Handle errors appropriately
-      res.render('error');
+    console.error(error);
+    // Handle errors appropriately
+    res.render('error');
   }
 });
 
+
+
 // Delete recipe
 router.post('/delete', (req, res) => {
-  const id = req.body.userId;
+  const id = req.body.id;
   Recipe.findByIdAndDelete(id, (err, result) => {
     if (err) {
       console.log(err);
@@ -226,9 +247,44 @@ router.post('/delete', (req, res) => {
   });
 });
 
+// Display the form for updating a recipe
+router.get('/updateadmin', async (req, res) => {
+  const recipeId = req.query.id;
+  try {
+    const recipe = await Recipe.findById(recipeId);
+    if (!recipe) {
+      res.status(404).send('Recipe not found');
+    } else {
+      res.render('admin-update_recipes', { title: "Recipe update", recipe });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+});
+
+
+// Handle the POST request for updating a recipe
+router.post('/admin-update/:id', async (req, res) => {
+  const { title, description, ingredients } = req.body;
+  const id = req.params.id;
+
+  try {
+    // Find the recipe by ID and update its properties
+    const recipe = await Recipe.findByIdAndUpdate(id, { title, description, ingredients });
+    // Redirect to the updated recipe's page
+    res.redirect(`/admin-recipe/${id}`);
+  } catch (error) {
+    console.error(error);
+    // Handle errors appropriately
+    res.render('error');
+  }
+});
+
+
 // Delete recipe
 router.post('/admin-delete', (req, res) => {
-  const id = req.body.userId;
+  const id = req.body.id;
   Recipe.findByIdAndDelete(id, (err, result) => {
     if (err) {
       console.log(err);

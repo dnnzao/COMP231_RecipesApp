@@ -6,14 +6,14 @@
     </head>
     <body>
         <header>
-            <%- include('../partials/header'); %>
+            <%- include('../partials/header-admin'); %>
             <link rel='stylesheet' href='/content/postpage.css'/>
 
         </header>
         <div  class="text-center text-muted" >
             <!-- <h1 class="text-center text-muted" >Contact</h1>-->
                 <main class="text-center text-muted" >
-                    <form class="form" action="/update/<%= recipe._id %>" method="POST">
+                    <form class="form" action="/admin-update/<%= recipe._id %>" method="POST">
                     <br>
                         <fieldset>
 
@@ -47,7 +47,7 @@
 
                     </form>
                     <div id="img">
-                         <img src="/images/post.png" width="285" height="800" alt="register image"> 
+                         <img src="/images/post.png" width="270" height="610" alt="register image"> 
                     </div>
                 </main>
             </div><br><br>
