@@ -70,13 +70,7 @@ top:295px;
 left: 430px;
 }
  
-#checkbox {
-  text-align: center;
-  float:left;
-  position: absolute;
-  top:315px;
-  left: 430px;
-  }
+
 
 
 #email1 {
@@ -166,6 +160,22 @@ li.list-group-item-dark {
   color: red;
 }
 
-footer {
-  center
+#foot {
+  text-align: center;
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.password-container {
+  width: 500px;
+  position: relative;
+}
+
+.fa-eye {
+  position: absolute;
+  top: 790;
+  right: 980;
+  cursor: pointer;
+  color: light gray;
 }
