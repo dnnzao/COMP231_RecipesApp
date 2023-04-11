@@ -49,9 +49,6 @@ label {
 
 }
 
-footer {
-  text-align: left;
-}
 
 legend {
 color: green;
@@ -72,12 +69,21 @@ position: absolute;
 top:295px;
 left: 430px;
 }
+ 
+#checkbox {
+  text-align: center;
+  float:left;
+  position: absolute;
+  top:315px;
+  left: 430px;
+  }
+
 
 #email1 {
   text-align: center;
   float:left;
   position: absolute;
-  top:360px;
+  top:375px;
   left: 430px;
   }
 
@@ -158,4 +164,8 @@ li.list-group-item-dark {
 
 .error {
   color: red;
+}
+
+footer {
+  center
 }
