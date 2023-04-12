@@ -49,7 +49,7 @@ body {
   label {
       margin-left: 1px;
       margin-right: auto;
-      width: 680px;
+      width: 150px;
   
       text-align: center;
   
@@ -73,10 +73,11 @@ body {
     border: 1px solid;
     padding: 15px;
     margin: auto;
+    font-size: 12pt;
   }
   
   .form {
-    text-align: center;
+    text-align: left;
     margin-right: auto;
     margin-left: auto;
     font-size: 14pt;

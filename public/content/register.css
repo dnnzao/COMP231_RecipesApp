@@ -179,3 +179,13 @@ li.list-group-item-dark {
   cursor: pointer;
   color: light gray;
 }
+
+.contact_input {
+
+  text-align: left;
+  color: #0be21d;
+  position: relative;
+  top: 790;
+  left: 100;
+
+}
