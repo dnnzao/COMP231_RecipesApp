@@ -48,6 +48,18 @@ router.post("/info", [
         });
         return;
       }
+
+      // Check if a user with the same username already exists
+      const usernameUser = await User.findOne({ username });
+      if (usernameUser) {
+        res.render("register_user", {
+          user: req.body,
+          errors: [{ msg: "Username already exists" }],
+          title: "COMP 231 - Assignment 1 - Register Fail",
+        });
+        return;
+      }
+      
       new User({
         username,
         password,
