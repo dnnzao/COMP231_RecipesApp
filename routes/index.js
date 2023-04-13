@@ -191,7 +191,7 @@ router.post("/login", function(req, res, next) {
           });
         } else {
           req.flash("error", "Incorrect username or password.");
-          return res.redirect("/");
+          return res.redirect("/login");
         }
       })(req, res, next);
     }
