@@ -23,7 +23,7 @@
                                 <td><%- userList[i].email %></td>
                                 
                                 <td> 
-                                    <form action="/deleteUser" method="POST">
+                                    <form action="/deleteUser" method="POST" onsubmit="return confirm('Are you sure you want to delete this recipe?');">
                                         <input style="display: none" value="<%- userList[i]._id %>" name="userId">
                                         <button type="submit">Delete</button>
                                     </form>
